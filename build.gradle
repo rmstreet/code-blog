@@ -1,0 +1,38 @@
+
+plugins {
+	id("org.springframework.boot") version "${springBootVersion}"
+	id("io.spring.dependency-management") version "${dependencyManagementVersion}"
+	id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
+	id "org.jetbrains.kotlin.plugin.spring" version "${kotlinVersion}"
+	id "org.jetbrains.kotlin.plugin.jpa" version "${kotlinVersion}"
+}
+
+def jarSuffix = System.getenv('JAR_SUFFIX') ?: ""
+description   = description
+group         = group
+version       = version + jarSuffix
+
+// Separando dependencias para outro arquivo.
+apply from: 'dependencies.gradle'
+
+repositories {
+	mavenCentral()
+}
+
+test {
+	useJUnitPlatform()
+	ignoreFailures = false
+}
+
+compileKotlin {
+	kotlinOptions {
+		jvmTarget = jvm
+	}
+}
+
+compileTestKotlin {
+	kotlinOptions {
+		jvmTarget = jvm
+	}
+}
+
