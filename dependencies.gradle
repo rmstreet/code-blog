@@ -2,15 +2,21 @@
 def jacksonVersion        = "2.10.0"
 def postgresqlVersion     = "42.2.18"
 def devtoolsVersion       = "2.4.0"
+//def flywayVersion         = "6.5.0"
 
 dependencies {
+    // TODO: Incluir essa dependencia quando estivermos com todo os modelos mapeados e as tabelas definidas,
+    //  para assim criar os scripts das tabelas e toda migration por flyway
+    // implementation "org.flywaydb:flyway-core:${flywayVersion}"
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+//    implementation "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}"
     implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
     runtimeClasspath "org.springframework.boot:spring-boot-devtools:${devtoolsVersion}"
     runtimeOnly "org.postgresql:postgresql:${postgresqlVersion}"
     testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+//    testImplementation "org.springframework.security:spring-security-test:${springBootVersion}"
 }
